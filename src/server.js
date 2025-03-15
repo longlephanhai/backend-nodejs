@@ -3,8 +3,9 @@ const express = require('express')
 const app = express()
 const configViewEngine = require('./config/viewEngine')
 const router = require('./routes/web')
+const connection = require('./config/database')
 // Get the client
-const mysql = require('mysql2');
+
 const port = process.env.PORT || 8080
 const hostName = process.env.HOST_NAME
 
@@ -15,14 +16,7 @@ configViewEngine(app)
 app.use(router)
 
 // test connection
-// Create the connection to database
-const connection = mysql.createConnection({
-  port: 3306, 
-  host: 'localhost',
-  user: 'root',
-  password: 'log?1234',
-  database: 'longlephanhai',
-});
+
 
 // A simple SELECT query
 connection.query(
