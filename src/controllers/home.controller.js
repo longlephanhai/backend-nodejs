@@ -9,9 +9,15 @@ const getABC = (req, res) => {
 }
 
 const postCreateUser = (req, res) => {
-  console.log(req.body);
-  
-  res.send('Create a new user')
+  const { email, name, city } = req.body
+  const query = `INSERT INTO users (email, name, city) VALUES (?,?,?)`
+  connection.query(
+    query,
+    [email, name, city],
+    (err, results) => {
+      res.send('Create user successfully')
+    }
+  )
 }
 module.exports = {
   getHomePage,

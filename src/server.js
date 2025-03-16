@@ -19,9 +19,6 @@ configViewEngine(app)
 // khai báo route
 app.use(router)
 
-
-
-
 app.listen(port, hostName, () => {
   console.log(`Example app listening on port ${port}`)
 })
