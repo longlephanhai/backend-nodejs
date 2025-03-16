@@ -3,11 +3,15 @@ const express = require('express')
 const app = express()
 const configViewEngine = require('./config/viewEngine')
 const router = require('./routes/web')
-const connection = require('./config/database')
+
 // Get the client
 
 const port = process.env.PORT || 8080
 const hostName = process.env.HOST_NAME
+
+// config req.body
+app.use(express.json()) // for json
+app.use(express.urlencoded({ extended: true })) // for form data
 
 // config template engine
 configViewEngine(app)
@@ -15,10 +19,7 @@ configViewEngine(app)
 // khai báo route
 app.use(router)
 
-// test connection
 
-
-// A simple SELECT query
 
 
 app.listen(port, hostName, () => {
