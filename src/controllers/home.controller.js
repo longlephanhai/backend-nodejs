@@ -1,16 +1,7 @@
 const connection = require("../config/database");
 
-const handleGetHomePage = (req, res) => {
-  let users = [];
-  connection.query(
-    'SELECT * FROM users',
-    function (err, results, fields) {
-      users = results;
-      console.log("results: ", users); // results contains rows returned by server
-      res.json(users);
-    }
-  );
-
+const getHomePage = (req, res) => {
+  return res.render('home.ejs')
 }
 
 const getABC = (req, res) => {
@@ -18,6 +9,6 @@ const getABC = (req, res) => {
 }
 
 module.exports = {
-  handleGetHomePage,
+  getHomePage,
   getABC
 }
