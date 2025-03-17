@@ -32,7 +32,13 @@ const postCreateUser = async (req, res) => {
   res.send('Create user successfully')
 }
 
-const getUpdatePage = (req,res) => {
+const getUpdatePage = async (req, res) => {
+  const userDd = req.params.id
+  const [results, fields] = await connection.query(
+    `SELECT * FROM Users WHERE id=?`, [userDd]
+  )
+  console.log("results", results);
+
   res.render('edit.ejs')
 }
 module.exports = {

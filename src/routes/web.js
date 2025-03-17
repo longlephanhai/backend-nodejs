@@ -6,5 +6,5 @@ router.get('/', getHomePage)
 router.get('/abc', getABC)
 router.get('/create', getCreatePage)
 router.post('/create-user', postCreateUser)
-router.get('/update',getUpdatePage)
+router.get('/update/:id', getUpdatePage)
 module.exports = router
