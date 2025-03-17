@@ -1,5 +1,5 @@
 const connection = require("../config/database");
-const { getAllUser, getUserById } = require("../services/CRUDService");
+const { getAllUser, getUserById, updateUserById } = require("../services/CRUDService");
 
 const getHomePage = async (req, res) => {
   const results = await getAllUser()
@@ -39,10 +39,17 @@ const getUpdatePage = async (req, res) => {
     user: user
   })
 }
+
+const postUpdateUser = async (req, res) => {
+  const { id, email, name, city } = req.body;
+  await updateUserById(id, email, name, city)
+  res.redirect('/')
+}
 module.exports = {
   getHomePage,
   getABC,
   postCreateUser,
   getCreatePage,
-  getUpdatePage
+  getUpdatePage,
+  postUpdateUser
 }
