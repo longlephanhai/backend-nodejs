@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const configViewEngine = require('./config/viewEngine')
 const router = require('./routes/web')
-
+const connection = require('./config/database')
 // Get the client
 
 const port = process.env.PORT || 8080
@@ -18,6 +18,9 @@ configViewEngine(app)
 
 // khai báo route
 app.use(router)
+
+// test connection
+connection()
 
 app.listen(port, hostName, () => {
   console.log(`Example app listening on port ${port}`)
