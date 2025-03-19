@@ -20,8 +20,14 @@ configViewEngine(app)
 app.use(router)
 
 // test connection
-connection()
-
-app.listen(port, hostName, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+let conn;
+conn = (async () => {
+  try {
+    await connection()
+    app.listen(port, hostName, () => {
+      console.log(`Backend zero app listening on port ${port}`)
+    })
+  } catch (error) {
+    console.log(">> Backend zero connection to database", error);
+  }
+})()
