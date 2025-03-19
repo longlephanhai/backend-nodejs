@@ -19,7 +19,6 @@ configViewEngine(app)
 // khai báo route
 app.use(router)
 
-
 // test connection
 let conn;
 conn = (async () => {
