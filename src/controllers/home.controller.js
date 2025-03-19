@@ -49,7 +49,8 @@ const postUpdateUser = async (req, res) => {
 
 const postDeleteUser = async (req, res) => {
   const userId = req.params.id
-  const user = await getUserById(userId)
+  // const user = await getUserById(userId)
+  const user = await User.findById(userId)
   res.render('delete.ejs', {
     user: user
   })
@@ -57,7 +58,8 @@ const postDeleteUser = async (req, res) => {
 
 const postHandleRemoveUser = async (req, res) => {
   const userId = req.body.id
-  await deleteUserById(userId)
+  // await deleteUserById(userId)
+  await User.deleteOne({ _id: userId })
   res.redirect('/')
 }
 module.exports = {
