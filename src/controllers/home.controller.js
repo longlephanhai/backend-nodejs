@@ -29,7 +29,8 @@ const postCreateUser = async (req, res) => {
 
 const getUpdatePage = async (req, res) => {
   const userId = req.params.id
-  const user = await getUserById(userId)
+  // const user = await getUserById(userId)
+  const user = await User.findById(userId)
   res.render('edit.ejs', {
     user: user
   })
@@ -37,7 +38,12 @@ const getUpdatePage = async (req, res) => {
 
 const postUpdateUser = async (req, res) => {
   const { id, email, name, city } = req.body;
-  await updateUserById(id, email, name, city)
+  // await updateUserById(id, email, name, city)
+  await User.updateOne({ _id: id }, {
+    email,
+    name,
+    city
+  })
   res.redirect('/')
 }
 
