@@ -1,9 +1,9 @@
 const User = require("../models/user");
-const { getAllUser, getUserById, updateUserById, deleteUserById } = require("../services/CRUDService");
+const { getUserById, updateUserById, deleteUserById } = require("../services/CRUDService");
 
 const getHomePage = async (req, res) => {
   // const results = await getAllUser()
-  let results = []
+  const results = await User.find()
   return res.render('home.ejs', {
     listUser: results
   })
