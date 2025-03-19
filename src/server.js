@@ -4,7 +4,6 @@ const app = express()
 const configViewEngine = require('./config/viewEngine')
 const router = require('./routes/web')
 const connection = require('./config/database')
-const { default: mongoose } = require('mongoose')
 // Get the client
 
 const port = process.env.PORT || 8080
@@ -20,12 +19,6 @@ configViewEngine(app)
 // khai báo route
 app.use(router)
 
-const kittySchema = new mongoose.Schema({
-  name: String
-});
-const Kitten = mongoose.model('Kitten', kittySchema);
-const cat = new Kitten({ name: 'Silence' });
-cat.save();
 
 // test connection
 let conn;
