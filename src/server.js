@@ -19,7 +19,7 @@ configViewEngine(app)
 
 // khai báo route
 app.use(router)
-app.use("/v1/api/", routerAPI)
+app.use("/v1/api",routerAPI)
 // test connection
 let conn;
 conn = (async () => {
