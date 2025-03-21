@@ -18,7 +18,7 @@ const uploadSingleFile = async (fileObject) => {
   }
 }
 
-const uploadMultipleFile =async (fileObject) => {
+const uploadMultipleFile = async (fileObject) => {
   fileObject.forEach(async (file) => {
     file.name = Date.now() + "-" + file.name;
     const uploadPath = path.join("./src/public/image/upload/") + file.name;
