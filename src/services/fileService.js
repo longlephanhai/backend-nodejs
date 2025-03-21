@@ -6,7 +6,7 @@ const uploadSingleFile = async (fileObject) => {
     await fileObject.mv(uploadPath)
     return {
       status: 'success',
-      path: 'link-image',
+      path: fileObject.name,
       error: null
     }
   } catch (error) {
@@ -19,24 +19,25 @@ const uploadSingleFile = async (fileObject) => {
 }
 
 const uploadMultipleFile = async (fileObject) => {
-  fileObject.forEach(async (file) => {
-    file.name = Date.now() + "-" + file.name;
-    const uploadPath = path.join("./src/public/image/upload/") + file.name;
-    try {
+  try {
+    fileObject.forEach(async (file) => {
+      file.name = Date.now() + "-" + file.name;
+      const uploadPath = path.join("./src/public/image/upload/") + file.name;
       await file.mv(uploadPath)
-      return {
-        status: 'success',
-        path: 'link-image',
-        error: null
-      }
-    } catch (error) {
-      return {
-        status: 'failed',
-        path: null,
-        error: JSON.stringify(error)
-      }
+    })
+    return {
+      status: 'success',
+      path: 'link-image',
+      error: null
     }
-  })
+  } catch (error) {
+    return {
+      status: 'failed',
+      path: null,
+      error: JSON.stringify(error)
+    }
+  }
+
 }
 
 module.exports = {
