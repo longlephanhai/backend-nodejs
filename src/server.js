@@ -5,10 +5,13 @@ const configViewEngine = require('./config/viewEngine')
 const router = require('./routes/web')
 const connection = require('./config/database')
 const routerAPI = require('./routes/api')
-// Get the client
+const fileUpload = require('express-fileupload');
 
 const port = process.env.PORT || 8080
 const hostName = process.env.HOST_NAME
+
+// config file upload
+app.use(fileUpload());
 
 // config req.body
 app.use(express.json()) // for json
@@ -19,7 +22,7 @@ configViewEngine(app)
 
 // khai báo route
 app.use(router)
-app.use("/v1/api",routerAPI)
+app.use("/v1/api", routerAPI)
 // test connection
 let conn;
 conn = (async () => {
