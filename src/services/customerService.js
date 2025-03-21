@@ -15,6 +15,15 @@ const createCustomerService = async (name, address, phone, email, description, i
     return error
   }
 }
+const createArrayCustomerService = async (customers) => {
+  try {
+    const result = await Customer.insertMany(customers)
+    return result
+  } catch (error) {
+    return error
+  }
+}
 module.exports = {
-  createCustomerService
+  createCustomerService,
+  createArrayCustomerService
 }
