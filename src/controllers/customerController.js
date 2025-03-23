@@ -1,4 +1,4 @@
-const { createCustomerService, createArrayCustomerService, getCustomersService, updateCustomerService, deleteCustomerService } = require("../services/customerService");
+const { createCustomerService, createArrayCustomerService, getCustomersService, updateCustomerService, deleteCustomerService, deleteArrayCustomerService } = require("../services/customerService");
 const { uploadSingleFile } = require("../services/fileService");
 
 const postCreateCustomerAPI = async (req, res) => {
@@ -16,7 +16,6 @@ const postCreateCustomerAPI = async (req, res) => {
     data: result
   })
 }
-
 const postCreateArrayCustomerAPI = async (req, res) => {
   const result = await createArrayCustomerService(req.body.customers)
   res.status(200).json({
@@ -24,7 +23,6 @@ const postCreateArrayCustomerAPI = async (req, res) => {
     data: result
   })
 }
-
 const getCustomersAPI = async (req, res) => {
   const data = await getCustomersService()
   res.status(200).json({
@@ -32,7 +30,6 @@ const getCustomersAPI = async (req, res) => {
     data: data
   })
 }
-
 const patchUpdateCustomerAPI = async (req, res) => {
   const { id, name, email, address } = req.body
   const result = await updateCustomerService(id, name, email, address)
@@ -41,10 +38,17 @@ const patchUpdateCustomerAPI = async (req, res) => {
     data: result
   })
 }
-
 const deleteCustomerAPI = async (req, res) => {
   const id = req.body.id
   const result = await deleteCustomerService(id)
+  res.status(200).json({
+    status: 200,
+    data: result
+  })
+}
+const deleteArrayCustomerAPI = async (req, res) => {
+  const ids = req.body.customerId
+  const result = await deleteArrayCustomerService(ids)
   res.status(200).json({
     status: 200,
     data: result
@@ -55,5 +59,6 @@ module.exports = {
   postCreateArrayCustomerAPI,
   getCustomersAPI,
   patchUpdateCustomerAPI,
-  deleteCustomerAPI
+  deleteCustomerAPI,
+  deleteArrayCustomerAPI
 }
